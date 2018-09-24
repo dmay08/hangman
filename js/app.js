@@ -2,6 +2,10 @@
 
 
 /*----- app's state (variables) -----*/
+var state; /* got this from Ryan - use later for switch case break */
+
+
+
 
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 
@@ -24,6 +28,8 @@ var categoryClicked // category clicked on init page
 
 
 /*----- cached element references -----*/
+    // each app state variable should be down here
+modalStart = document.getElementById()
 
 
 /*----- event listeners -----*/
@@ -32,11 +38,19 @@ playAgain.addEventListener('click', initialize);
 
 /*----- functions -----*/
 
+modalStart.addEventListener('click', function(evt) {
+
+})
+
+
+
+
+
 // !! INITIAL PAGE!!!
 // 1) initialize page
 function initialize() {}; 
 
-// 2) respond to category that is clicked
+// 2) respond to category that is clicked (grab value & check)
     // generate random word from specified category array of words
 
 // !! GAME PAGE !!
@@ -44,7 +58,7 @@ function initialize() {};
     // generate random word (wordChosen) from specified category array AND
     // update ?answerArray? to wordChosen
 
-// 4) respond to letter that is clicked (event listener)
+// 4) respond to letter that is clicked (event listener) & check to see if it is in array;
     // letter button changes color AND
     // REVEAL this letter in ?answerArray? (if in word) OR
     // REVEAL one picture of hangman AND
@@ -62,6 +76,44 @@ function clickLetter()
 
 
 
+        
+/* --- in class Monday 9/24 ---- */
+//mask function for answer array
+var hideLetters = function () { 
+    correct = document.createElement('ul');
+    
+    for (var i = 0; i < wordSelected.length; i++) {
+        letterClicked = document.createElement('li');
+        letterClicked = setAttribute('class', 'letterClicked');
+
+        if (wordSelected[i] === "-") {
+            letterClicked.innerHTML = "-";
+        } else {
+            letterClicked.innerHTML = "_";
+        }
+
+        letterClickedList.push(letterClicked);
+        wordHolder.appendChild(correct);
+        correct.appendChild(letterClicked);
+    }
+}
+
+//display messages function
+var display = function () { //print outs for end game
+    showGuessesLeft.innerHTML = `${guessesLeft} guesses left!`;
+    if (guessesLeft < 1) {
+        showGuesseLeft.innerHTML = `Bummer! The word was: ${wordSelected}.`
+    } 
+    for (var i = 0; i < letterClickedList.length; i++) {
+        if (total + space === letterClickedList) { // total space??
+            showGuessesLeft.innerHTML = "You win!;"
+        }
+    }
+}
+
+
+/* --- in class Monday 9/24 ---- */
+
 
 
 
@@ -77,6 +129,7 @@ var words = [
 ];
 
 var wordChosen = words[Math.floor(Math.random() * words.length)];
+// push or set? into "wordChosen"
 
 /*   TO TEST:
 var el = document.getElementById("demo")
