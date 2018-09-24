@@ -1,4 +1,5 @@
-/*----- constants -----*/
+/*----- constants (var that you don't want to change) -----*/
+var categoryArray = ['animals', 'balloons', 'trees']
 
 
 /*----- app's state (variables) -----*/
@@ -6,25 +7,42 @@ var state; /* got this from Ryan - use later for switch case break */
 
 
 
+/* ------- Mon 9/24 reading thru pseudo & generate variables */
+var currCategory; if currCategory = categoryArray[0] then ..
 
-var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 
-'v', 'w', 'x', 'y', 'z'];
-
-var guessesLeft; // Amt of guesses remaining
-var guessesCorrect; // Amt of correct guesses
-var wordLength; // Amount of letters in a word
+var wordChosen; // Word that is chosen / randomized;
 var wordBank; // Bank of words (array);
 
-var wordChosen; // Word that is chosen;
+var hiddenAnswer = []; // Hidden ("_") array that reveals letters
 var letterClicked; // Letter that is clicked;
+var letterClickedList = []; // worded word guesses = array of letters user has clicked
+var alphabet;
+var guessesLeft; // Amt of guesses remaining
+var playAgain; // Play again button
+
+var hangman; // hangman image 
+/* ------- Mon 9/24^ ---------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* ----leftovers from tutorial not used when goign thru pseudo */
+var guessesCorrect; // Amt of correct guesses
+var wordLength; // Amount of letters in a word
 
 var wordSelected = []; // selected word???
-var letterClickedList = []; // worded word guesses??
-
-var playAgain; // Play again button
-// ------ my own 
-var categoryClicked // category clicked on init page
+/* ------leftovers^ --------------------------------------- */
 
 
 /*----- cached element references -----*/
@@ -33,10 +51,29 @@ modalStart = document.getElementById()
 
 
 /*----- event listeners -----*/
+categoryArray.addEventListener('click', generateWord);
 letterClicked.addEventListener('click', letterClick);
 playAgain.addEventListener('click', initialize);
 
 /*----- functions -----*/
+/* --------- monday 9/24 - DONE!!! -------- */
+function initialize() {
+    // initial state of everything THAT WILL CHANGE!!
+    hangman = [0, 0, 0, 0, 0, 0]; // if hangman[0] is selected -> change that to 1
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 
+    'v', 'w', 'x', 'y', 'z'];
+    hiddenAnswer = wordChosen;
+    guessesLeft = 6;
+
+};
+/* --------- monday 9/24 - DONE!!! -------- */
+
+
+
+function generateWord() {};
+function letterClick() {};
+
 
 modalStart.addEventListener('click', function(evt) {
 
@@ -76,7 +113,7 @@ function clickLetter()
 
 
 
-        
+
 /* --- in class Monday 9/24 ---- */
 //mask function for answer array
 var hideLetters = function () { 
@@ -110,8 +147,6 @@ var display = function () { //print outs for end game
         }
     }
 }
-
-
 /* --- in class Monday 9/24 ---- */
 
 
@@ -159,9 +194,6 @@ while (remainingLetters > 0) {
     el.innerHTML = answerArray.join(' ');
     //get a guess from the player
     var letterClicked = 
-
-
-
 
 }
 
