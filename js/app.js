@@ -1,5 +1,6 @@
 /*----- constants (var that you don't want to change) -----*/
-var categoryArray = ['animals', 'balloons', 'trees']
+// var categoryArray = ['animals', 'balloons', 'trees']
+
 
 
 /*----- app's state (variables) -----*/
@@ -8,7 +9,7 @@ var state; /* got this from Ryan - use later for switch case break */
 
 
 /* ------- Mon 9/24 reading thru pseudo & generate variables */
-var currCategory; if currCategory = categoryArray[0] then ..
+// var currCategory; if currCategory = categoryArray[0] then ..
 
 var wordChosen; // Word that is chosen / randomized;
 var wordBank; // Bank of words (array);
@@ -55,6 +56,7 @@ categoryArray.addEventListener('click', generateWord);
 letterClicked.addEventListener('click', letterClick);
 playAgain.addEventListener('click', initialize);
 
+
 /*----- functions -----*/
 /* --------- monday 9/24 - DONE!!! -------- */
 function initialize() {
@@ -65,7 +67,6 @@ function initialize() {
     'v', 'w', 'x', 'y', 'z'];
     hiddenAnswer = wordChosen;
     guessesLeft = 6;
-
 };
 /* --------- monday 9/24 - DONE!!! -------- */
 
@@ -162,6 +163,7 @@ var words = [
     'cheetah',
     'platypus'
 ];
+
 
 var wordChosen = words[Math.floor(Math.random() * words.length)];
 // push or set? into "wordChosen"
