@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Hangman</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js" defer></script>
+    <script src="js/charlie.js" defer></script>
 </head>
 
 <body>
@@ -15,27 +17,28 @@
         <h2>Category is:</h2>
     </div>
 
-    <div id=middleWrap>
-        
+    <p id=middleWrap>
+
         <div id=hangman>hangman</div>
-        
+
         <p>Click a letter:</p>
-       
+
         <div id=alphabetWrap>
             <ul id=alphabet></ul>
         </div>
 
-        <ul id=word-chosen>
-          
+        <ul id="word-chosen"></ul>
+
+        <ul id=guessedLetters>
         </ul>
 
         <p>__ guesses remaining</p>
- 
-        <div id=bottomWrap class=theme>
-            <p>Play again</p>
-        </div>    
 
-    </div>
+        <p id=bottomWrap class=theme>
+            <p>Play again</p>
+        </p>
+
+    </p>
 </body>
 
 </html>
