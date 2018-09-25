@@ -24,12 +24,36 @@ body {
 li {
     list-style-type: none;
     position: relative;
-    margin: 0px;
+    margin: 0px 1em;
     display: inline-block;
+    font-size: 2em;
+    min-width: 1em;
 }
 
 #bottomWrap {
     display: block;
     height: 50px;
     padding: 30px 0;
+}
+-----
+
+/* with Charlie */
+li.hidden {
+    color: transparent;
+    border-bottom: 1px solid black;
+}
+
+button {
+    background: white;
+    text-transform: capitalize;
+    box-shadow: 'rgba(0, 0, 0, 0.4) 0 2px 15px -3px';
+    border-radius: 5px;
+    height: 3em;
+    width: 3em;
+    user-select: none;
+    outline: none;
+}
+
+button:hover {
+    background: rgba(0, 0, 0, 0.2);
 }

@@ -1,6 +1,6 @@
 /*----- constants (var that you don't want to change) -----*/
-var categoryArray = ['animals', 'balloons', 'trees']
-
+//var categoryArray = ['animals', 'balloons', 'trees']
+var alphabet;
 
 /*----- app's state (variables) -----*/
 var state; /* got this from Ryan - use later for switch case break */
@@ -8,15 +8,15 @@ var state; /* got this from Ryan - use later for switch case break */
 
 
 /* ------- Mon 9/24 reading thru pseudo & generate variables */
-var currCategory; if currCategory = categoryArray[0] then ..
+var currCategory; (//if currCategory = categoryArray[0] then ..)
 
 var wordChosen; // Word that is chosen / randomized;
 var wordBank; // Bank of words (array);
 
 var hiddenAnswer = []; // Hidden ("_") array that reveals letters
 var letterClicked; // Letter that is clicked;
-var letterClickedList = []; // worded word guesses = array of letters user has clicked
-var alphabet;
+var lettersChosen (lettersClickedList) = []; // worded word guesses = array of letters user has clicked
+
 var guessesLeft; // Amt of guesses remaining
 var playAgain; // Play again button
 
