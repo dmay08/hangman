@@ -3,6 +3,17 @@ body {
   font-family: helvetica;
   color: white;
   text-align: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#midBottomWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
 }
 
 .theme {
@@ -12,10 +23,10 @@ body {
   width: 100%;
 }
 
-#hangMan {
+#hangman {
   background-color: black;
-  width: 500px;
-  height: 500px;
+  width: 350px;
+  height: 350px;
   margin: 10px;
   padding: 10px;
   display: inline-block;
@@ -35,6 +46,11 @@ li.hidden {
   border-bottom: 1px solid black;
 }
 
+li.show {
+    color: blue;
+    border-bottom: none;
+}
+
 button {
   background: white;
   text-transform: capitalize;
@@ -51,3 +67,81 @@ button {
   height: 50px;
   padding: 30px 0;
 }
+
+.right-letter {
+    background-color: green;
+}
+
+.wrong-letter {
+    background-color: red;
+}
+
+
+#my-modal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); 
+}
+
+#modal-content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.modal-header {
+    padding: 10px 16px;
+    background-color: lightseagreen;
+    color: white;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.modal-body {
+    background-color: orange;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.modal-cats {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#cat1 {
+    background-color:red;
+    text-align: center;
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+}
+
+#cat2 {
+    background-color:rebeccapurple;
+    text-align: center;
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+}
+
+#cat3 {
+    background-color:blue;
+    text-align: center;
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+}
+

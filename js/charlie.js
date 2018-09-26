@@ -12,7 +12,7 @@ const hangman = document.getElementById('hangman')
 
 // Event Listneners
 
-// Funcitons
+// Functions
 init()
 
 function init() {
@@ -22,7 +22,7 @@ function init() {
   rightLetters = []
   wrongLetters = []
   render()
-}
+} 
 
 function render() {
   // Render Alphabet

@@ -10,15 +10,14 @@ const alphabetUl = document.getElementById('alphabet')
 const wordChosenUl = getElementById('word-chosen')
 const hangman = document.getElementById('hangman')
 
-console.log(letters)
 
 // Functions
 function init() { //starting app states
-    alphabet = ['a', 'b', 'c', 'd']
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     wordChosen = words[0]; //we can add later
     rightLetters = [];
     wrongLetters = [];
-    // guessesLeft = 6 (don't need: can use: 6-wrongLetters.length
+    // guessesLeft = 6 (don't need: can use: 6 - wrongLetters.length
     render()
 }
 
@@ -58,7 +57,7 @@ function handleLetterClick(e) {
     // Check against chosen word
     const clickedLetter = e.target.value
     const foundLetters = wordChosen.split('').filter(l=> { /* filter automatically pushes into foundLetters[] */
-        l === clickedLetter);
+        l === clickedLetter;
     }
   
     // if right - add to right array add class to button and reveal letter
