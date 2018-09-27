@@ -1,180 +1,118 @@
 // constants
-const totalWrongGuess = 6
-const words = ['happy']
+const words = {
+    animals: ['CHIMPANZEE', 'ALLIGATOR', 'GORILLA', 'PLATYPUS', 'CHEETAH'],
+    countries: ['AMERICA', 'CHINA', 'RUSSIA', 'BELGIUM', 'BRAZIL'],
+    holidays: ['CHRISTMAS', 'HANUKKAH', 'KWANZAA', 'EASTER', 'RAMADAN']
+}
 
-// App State
-let alphabet, wordChosen, rightLetters, wrongLetters
+// app state = "what are the things you have to remember during gameplay"
+let wordChosen, rightLetters, wrongLetters, category;
+// var yesPlayer = new Audio('yes.mp3');
 
-// Element References
-const alphabetUl = document.getElementById('alphabet')
-const wordChosenUl = document.getElementById('word-chosen')
-const hangman = document.getElementById('hangman')
+// cached element references (need to access these)
+const wordChosenUl = document.getElementById('word-chosen');
+// const alphabetUl = document.getElementById('alphabet');
+const hangmanImageEl = document.getElementById('hangman');
+const letterBtns = document.querySelectorAll('#alphabetWrap button');
+const message = document.getElementById('message');
+const categoryIs = document.getElementById('category') // still need to USE this below
+const modal = document.getElementById('my-modal');
+const playAgain = document.getElementById('bottomWrap');
 
-// Event Listneners
+/* event listeners = "in response to user interaction, update state, then call render" */
 
-// Functions
-init()
+modal.addEventListener('click', function(event) {
+    if (!event.target.id.includes('cat')) return;
+    category = event.target.textContent.toLowerCase();
+    wordChosen = words[category][Math.floor(Math.random() * words[category].length)];
+    modal.style.display = "none";
+    init();
+    render();
+});
+
+document.getElementById('alphabetWrap').addEventListener('click', handleLetterClick);
+
+
+// functions
+
+init();
 
 function init() {
-  alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-  wordChosen = words[0] //we can add later
-  rightLetters = []
-  wrongLetters = []
-   // guessesLeft = 6 (don't need: can use: 6 - wrongLetters.length
-  render()
-} 
-
-function render() {
-  // Render Alphabet
-  alphabet.forEach(a => {
-    const button = document.createElement('button')
-    const li = document.createElement('li')
-
-    button.addEventListener('click', handleLetterClick)
-    button.value = button.innerText = a
-    li.appendChild(button)
-    alphabetUl.appendChild(li)
-  })
-
-  // Render Answer
-  wordChosenUl.innerHTML = '';
-  wordChosen.split('').forEach((l, i) => {
-    const li = document.createElement('li')
-    // li.id = l + i // allows us to target double letters (like p0, p1 for "happy")    - DON'T NEED! 
-    li.innerText = l;
-    li.className = rightLetters.includes(l) ? 'show' : 'hidden';
-    // li.classList.add('hidden') // THIS might BE REDONE (for line 53 task Chuck left me with)
-    wordChosenUl.appendChild(li)
-  })
+    rightLetters = [];
+    wrongLetters = [];
 }
 
-function update() { //updates after every letter click (after checking to see if right / wrong)
-    // Update wordChosenLi's with rightLetter array
-  rightLetters.forEach(l => {
-    const el = document.getElementById(l)
-    el.classList.remove('hidden')  // how do we get the guessed letters (same letter like p in happy) to NOT have the class hidden
-  })
+function render() { // taking state and puttign it in the DOM aka "VISUALIZING THE STATUS OF YOUR GAME"
+    // render "Category is: ___"
+    categoryIs.innerHTML = `Category is: ${category.toUpperCase()}`;
+
+    // render image
+    hangmanImageEl.src = `images/img${wrongLetters.length}.png`;
+    
+    // render alphabet
+    letterBtns.forEach((btn) => {
+        var letter = btn.textContent;
+        if (wrongLetters.includes(letter)) {
+            btn.className = 'wrong-letter';
+        } else if (rightLetters.includes(letter)) {
+            btn.className = 'right-letter';
+        } else {
+            btn.className = 'hvr-grow';
+        }
+    });
+   
+    // render answer
+    wordChosenUl.innerHTML = '';
+    wordChosen && wordChosen.split('').forEach(l => { // the && checks if wordChosen has a value THEN it's split (otherwise doesn't split)
+        const li = document.createElement('li')
+        li.innerText = l;
+        li.className = rightLetters.includes(l) ? 'show' : 'hidden';
+        wordChosenUl.appendChild(li);
+    });
+    // game win & lose logic
+    if (rightLetters.length === wordChosen.length) {
+        message.innerHTML = "You win!"; // else if amt of tries is nto equal to word (then run for loop) else (you lose)
+    } else if (wrongLetters.length === 6) {
+        message.innerHTML = "You lose...";
+        gameOver = "true";
+    } else if (rightLetters.length < wordChosen.length) {
+        message.innerHTML = `${6 - wrongLetters.length} guesses remaining`;
+    } 
 }
 
-function handleLetterClick(e) {
-  // Check against chosen word
-  const clickedLetter = e.target.value
-  if (wrongLetters.includes(clickedLetter) || rightLetters.includes(clickedLetter)) return;
-  
-  
-  const foundLetters = wordChosen.split('').filter(l => l === clickedLetter) /* filter automatically pushes into foundLetters[] */
-  // if right add to right array add class to button and reveal letter
-  if (foundLetters.length) {
-    foundLetters.forEach(l => rightLetters.push(l))
-    checkWin()
-    update()
-  }
-  // if wrong add to wrong array and error class and show part of hangman and reduce guess count
-     //foundLetters = empty (if nothing) or length
+function handleLetterClick(evt) {
+    if (wrongLetters.length === 6) return;
+    var target = event.target;
+    if (target.tagName !== 'BUTTON') return;
+    var letter = target.textContent;
+    if (wrongLetters.includes(letter) || rightLetters.includes(letter)) return;
+    if (wordChosen.includes(letter)) {
+        // play good guess audio
+        var numLetters = wordChosen.split('').filter(function(l) {
+            return l === letter;
+        });
+        rightLetters = rightLetters.concat(numLetters); // concatonate one array to aonother (numLetters into rightLetters)
+    } else {
+        // play wrong guess audio here
+        wrongLetters.push(letter);
+    } 
+    render();
 }
 
-function checkWin() {
-  if (rightLetters.length === wordChosen.length) {
-    // alert winner!!!!
-  }
-}
-
-// TOMORROW:
+playAgain.addEventListener('click', function(){ 
+    modal.style.display = "flex";
+});
 
 
-// reveal part of the hangman 
-
-// Stretch goals 
-    // Make categories modal
-
-// call checkwin after every click
+// TO DO:
+    // change images
+    // make sure it meets specifications
+    // cleanup / align properly
+    // add readME
+    
 
 
 
 
-
-
-
-
-/* --------------------------------------------------------------------------------------------- */
-
-/*----- event listeners -----*/
-// categoryArray.addEventListener('click', generateWord);
-
-// playAgain.addEventListener('click', initialize);
-
-
-// /*----- functions -----*/
-
-
-// modalStart.addEventListener('click', function(evt) {
-
-// })
-
-
-
-
-
-// !! INITIAL PAGE!!!
-// 1) initialize page
-
-
-// 2) respond to category that is clicked (grab value & check)
-    // generate random word from specified category array of words
-
-// !! GAME PAGE !!
-// 3) initialize game page AND
-    // generate random word (wordChosen) from specified category array AND
-    // update ?answerArray? to wordChosen
-
-// 4) respond to letter that is clicked (event listener) & check to see if it is in array;
-    // letter button changes color AND
-    // REVEAL this letter in ?answerArray? (if in word) OR
-    // REVEAL one picture of hangman AND
-        // subtract 1 from "guessesLeft" AND
-        // display new guessesLeft
-
-
-// 5) Continue steps 3-4 until EITHER:
-    // all letters in ?answerArray? are revealed OR:
-        // DISPLAY: "You win!" (in <p>"guesses remaining"</p>)
-    // guessesLeft = 0
-        // DISPLAY: "Bummer! Word was "wordChosen)"
-
-
-
-
-
-
-
-
-//display messages function
-// var display = function () { //print outs for end game
-//     showGuessesLeft.innerHTML = `${guessesLeft} guesses left!`;
-//     if (guessesLeft < 1) {
-//         showGuesseLeft.innerHTML = `Bummer! The word was: ${wordSelected}.`
-//     } 
-//     for (var i = 0; i < letterClickedList.length; i++) {
-//         if (total + space === letterClickedList) { // total space??
-//             showGuessesLeft.innerHTML = "You win!;"
-//         }
-//     }
-// }
-/* --- in class Monday 9/24 ---- */
-
-
-
-//Choosing a random word
-
-// var words = [
-//     'monkey',
-//     'alligator',
-//     'cheetah',
-//     'platypus'
-// ];
-
-
-var wordChosen = words[Math.floor(Math.random() * words.length)];
-// push or set? into "wordChosen"
 
 

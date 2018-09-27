@@ -8,19 +8,24 @@
     <title>Hangman</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="css/hover.css" rel="stylesheet" media="all">
-    <script src="js/new.js" defer></script>
+    <script src="js/app.js" defer></script>
 </head>
 
 <body>
     <div id="topWrap" class="theme hvr-forward">
         <h1>Danny's Hangman</h1>
-        <h2 id=category>Category is:</h2>
     </div>
 
     <div id="middleWrap">
+        <div id=categoryWrap>
+            <h2 id="category">Category is:</h2>
+        </div>
+        
         <img id="hangman" class="hvr-grow">
 
-        <p id="clickLetter">Click a letter:</p>
+        <div id="midBottomWrap">
+            <ul id="word-chosen"></ul>
+        </div>
 
         <div id="alphabetWrap">
             <button id="A" class="hvr-grow">A</button>
@@ -50,12 +55,7 @@
             <button>Y</button>
             <button>Z</button>
         </div>
-
-    <div id=midBottomWrap>
-        <ul id="word-chosen"></ul>
-        <p id=message>__ guesses remaining</p>
-    </div>
-
+        <p id="message">__ guesses remaining</p>
     </div>
     
     <div id="bottomWrap" class="theme hvr-float">
