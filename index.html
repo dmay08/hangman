@@ -7,47 +7,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hangman</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/hover.css" rel="stylesheet" media="all">
     <script src="js/new.js" defer></script>
 </head>
 
 <body>
-    <div id=topWrap class=theme>
+    <div id="topWrap" class="theme hvr-forward">
         <h1>Danny's Hangman</h1>
         <h2 id=category>Category is:</h2>
     </div>
 
-    <div id=middleWrap>
-        <div id=hangman></div>
+    <div id="middleWrap">
+        <img id="hangman" class="hvr-grow">
 
         <p>Click a letter:</p>
 
-        <div id=alphabetWrap>
-            <button id="A">A</button>
-            <button id="B">B</button>
-            <button id="C">C</button>
-            <button id="D">D</button>
-            <button id="E">E</button>
-            <button id="F">F</button>
-            <button id="G">G</button>
-            <button id="H">H</button>
-            <button id="I">I</button>
-            <button id="J">J</button>
-            <button id="K">K</button>
-            <button id="L">L</button>
-            <button id="M">M</button>
-            <button id="N">N</button>
-            <button id="O">O</button>
-            <button id="P">P</button>
-            <button id="Q">Q</button>
-            <button id="R">R</button>
-            <button id="S">S</button>
-            <button id="T">T</button>
-            <button id="U">U</button>
-            <button id="V">V</button>
-            <button id="W">W</button>
-            <button id="X">X</button>
-            <button id="Y">Y</button>
-            <button id="Z">Z</button>
+        <div id="alphabetWrap">
+            <button id="A" class="hvr-grow">A</button>
+            <button id="B" class="hvr-grow">B</button>
+            <button id="C" class="hvr-grow">C</button>
+            <button id="D" class="hvr-grow">D</button>
+            <button id="E" class="hvr-grow">E</button>
+            <button id="F" class="hvr-grow">F</button>
+            <button id="G" class="hvr-grow">G</button>
+            <button id="H" class="hvr-grow">H</button>
+            <button id="I" class="hvr-grow">I</button>
+            <button id="J" class="hvr-grow">J</button>
+            <button id="K" class="hvr-grow">K</button>
+            <button id="L" class="hvr-grow">L</button>
+            <button id="M" class="hvr-grow">M</button>
+            <button id="N" class="hvr-grow">N</button>
+            <button id="O" class="hvr-grow">O</button>
+            <button id="P" class="hvr-grow">P</button>
+            <button id="Q" class="hvr-grow">Q</button>
+            <button id="R" class="hvr-grow">R</button>
+            <button id="S" class="hvr-grow">S</button>
+            <button id="T" class="hvr-grow">T</button>
+            <button id="U" class="hvr-grow">U</button>
+            <button id="V" class="hvr-grow">V</button>
+            <button id="W" class="hvr-grow">W</button>
+            <button id="X" class="hvr-grow">X</button>
+            <button id="Y" class="hvr-grow">Y</button>
+            <button id="Z" class="hvr-grow">Z</button>
         </div>
 
     <div id=midBottomWrap>
@@ -57,7 +58,7 @@
 
     </div>
     
-    <div id="bottomWrap" class="theme">
+    <div id="bottomWrap" class="theme hvr-float">
             <p>Play again</p>
     </div>
 
@@ -66,11 +67,11 @@
         <div id="modal-content">
             <div class="modal-header">Danny's Hangman</div>
             <div class="modal-body">
-                <p>Click a Category to begin!</p>
+                <p id="click">Click a Category to begin!</p>
                 <div class="modal-cats">
-                    <div id="cat1">Animals</div>
-                    <div id="cat2">Countries</div>
-                    <div id="cat3">Colors</div>
+                    <div id="cat1" class="hvr-grow">Animals</div>
+                    <div id="cat2" class="hvr-grow">Countries</div>
+                    <div id="cat3" class="hvr-grow">Holidays</div>
                 </div>    
             </div>
         </div>

@@ -1,29 +1,34 @@
 // constants
 const words = {
-    animals: ['Monkey', 'Alligator'],
-    countries: ['America', 'China'],
-    colors: ['Red', 'Blue']
+    animals: ['CHIMPANZEE', 'ALLIGATOR', 'GORILLA', 'PLATYPUS', 'CHEETAH'],
+    countries: ['AMERICA', 'CHINA', 'RUSSIA', 'BELGIUM', 'BRAZIL'],
+    holidays: ['CHRISTMAS', 'HANUKKAH', 'KWANZAA', 'EASTER', 'RAMADAN']
 }
 
-// app state
+// app state = "what are the things you have to remember during gameplay"
 let wordChosen, rightLetters, wrongLetters, category;
 
 // cached element references (need to access these)
 const wordChosenUl = document.getElementById('word-chosen');
-const alphabetUl = document.getElementById('alphabet');
-const hangman = document.getElementById('hangman');
-const letterBtns = document.querySelectorAll('#alphabetWrap button');
+// const alphabetUl = document.getElementById('alphabet');
+const hangmanImageEl = document.getElementById('hangman');
+// const letterBtns = document.querySelectorAll('#alphabetWrap button');
 const message = document.getElementById('message');
 const categoryIs = document.getElementById('category') // still need to USE this below
 const modal = document.getElementById('my-modal');
+const playAgain = document.getElementById('bottomWrap');
 
+/* event listeners = "in response to user interaction, update state, then call render" */
 
 modal.addEventListener('click', function(event) {
     category = event.target.textContent.toLowerCase();
     wordChosen = words[category][Math.floor(Math.random() * words[category].length)];
-    document.getElementById('my-modal').style.display = "none";
+    modal.style.display = "none";
     render();
 });
+
+document.getElementById('alphabetWrap').addEventListener('click', handleLetterClick);
+
 
 // functions
 
@@ -32,18 +37,18 @@ init();
 function init() {
     rightLetters = [];
     wrongLetters = [];
+    gameOver = "false";
 }
 
-function render() { // taking state and puttign it in a DOM
+function render() { // taking state and puttign it in the DOM aka "VISUALIZING THE STATUS OF YOUR GAME"
+    // render "Category is: ___"
+    categoryIs.innerHTML = `Category is: ${category.toUpperCase()}`;
+
     // render image
-    //hangmanImageEl.src = `images/img${wrongLetters.length}.png`; 
+    hangmanImageEl.src = `images/img${wrongLetters.length}.png`;
     
     // render alphabet
-    letterBtns.forEach((btn) => {
-        var letter = btn.value;
-        if (wrongLetters.includes(letter)) btn.className = 'wrong-letter';
-        if (rightLetters.includes(letter)) btn.className = 'right-letter';
-    });
+   
     // render answer
     wordChosenUl.innerHTML = '';
     wordChosen && wordChosen.split('').forEach(l => { // the && checks if wordChosen has a value THEN it's split (otherwise doesn't split)
@@ -52,15 +57,46 @@ function render() { // taking state and puttign it in a DOM
         li.className = rightLetters.includes(l) ? 'show' : 'hidden';
         wordChosenUl.appendChild(li);
     });
+    // game win & lose logic
     if (rightLetters.length === wordChosen.length) {
-        message.innerHTML = "You win!" // else if amt of tries is nto equal to word (then run for loop) else (you lose)
+        message.innerHTML = "You win!"; // else if amt of tries is nto equal to word (then run for loop) else (you lose)
+    } else if (wrongLetters.length === 6) {
+        message.innerHTML = "You lose...";
+        gameOver = "true";
     } else if (rightLetters.length < wordChosen.length) {
         message.innerHTML = `${6 - wrongLetters.length} guesses remaining`;
-    } else if (wrongLetters.length === 6) {
-        message.innerHTML = "You lose..."
-    }
+    } 
 }
 
+function handleLetterClick(evt) {
+    if (gameOver !== "true") {
+            var target = event.target;
+        if (target.tagName !== 'BUTTON') return;
+        var letter = target.textContent;
+        if (wrongLetters.includes(letter) || rightLetters.includes(letter)) return;
+        if (wordChosen.includes(letter)) {
+            var numLetters = wordChosen.split('').filter(function(l) {
+                return l === letter;
+            });
+            target.className = "right-letter";
+            rightLetters = rightLetters.concat(numLetters); // concatonate one array to aonother (numLetters into rightLetters)
+        } else {
+            wrongLetters.push(letter);
+            target.className = "wrong-letter";
+        } 
+    }
+    render();
+}
+
+playAgain.addEventListener('click', function(){ // never updated so not in render()
+    modal.style.display = "flex";
+});
+
+
+
+// With Jim:
+
+    // cats need to be spaced further apart
 
 
 
