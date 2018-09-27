@@ -62,7 +62,7 @@ li.hidden {
 }
 
 li.show {
-    color: rgb(61 118 180);
+    color: rgb(61, 118, 180);
     border-bottom: none;
     font-size: 12px;
     display: inline-block;
