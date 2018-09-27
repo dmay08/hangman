@@ -12,7 +12,7 @@ let wordChosen, rightLetters, wrongLetters, category;
 const wordChosenUl = document.getElementById('word-chosen');
 // const alphabetUl = document.getElementById('alphabet');
 const hangmanImageEl = document.getElementById('hangman');
-// const letterBtns = document.querySelectorAll('#alphabetWrap button');
+const letterBtns = document.querySelectorAll('#alphabetWrap button');
 const message = document.getElementById('message');
 const categoryIs = document.getElementById('category') // still need to USE this below
 const modal = document.getElementById('my-modal');
@@ -24,6 +24,7 @@ modal.addEventListener('click', function(event) {
     category = event.target.textContent.toLowerCase();
     wordChosen = words[category][Math.floor(Math.random() * words[category].length)];
     modal.style.display = "none";
+    init();
     render();
 });
 
@@ -37,7 +38,6 @@ init();
 function init() {
     rightLetters = [];
     wrongLetters = [];
-    gameOver = "false";
 }
 
 function render() { // taking state and puttign it in the DOM aka "VISUALIZING THE STATUS OF YOUR GAME"
@@ -48,6 +48,16 @@ function render() { // taking state and puttign it in the DOM aka "VISUALIZING T
     hangmanImageEl.src = `images/img${wrongLetters.length}.png`;
     
     // render alphabet
+    letterBtns.forEach((btn) => {
+        var letter = btn.textContent;
+        if (wrongLetters.includes(letter)) {
+            btn.className = 'wrong-letter';
+        } else if (rightLetters.includes(letter)) {
+            btn.className = 'right-letter';
+        } else {
+            btn.className = 'hvr-grow';
+        }
+    });
    
     // render answer
     wordChosenUl.innerHTML = '';
@@ -69,34 +79,34 @@ function render() { // taking state and puttign it in the DOM aka "VISUALIZING T
 }
 
 function handleLetterClick(evt) {
-    if (gameOver !== "true") {
-            var target = event.target;
-        if (target.tagName !== 'BUTTON') return;
-        var letter = target.textContent;
-        if (wrongLetters.includes(letter) || rightLetters.includes(letter)) return;
-        if (wordChosen.includes(letter)) {
-            var numLetters = wordChosen.split('').filter(function(l) {
-                return l === letter;
-            });
-            target.className = "right-letter";
-            rightLetters = rightLetters.concat(numLetters); // concatonate one array to aonother (numLetters into rightLetters)
-        } else {
-            wrongLetters.push(letter);
-            target.className = "wrong-letter";
-        } 
-    }
+    if (wrongLetters.length === 6) return;
+    var target = event.target;
+    if (target.tagName !== 'BUTTON') return;
+    var letter = target.textContent;
+    if (wrongLetters.includes(letter) || rightLetters.includes(letter)) return;
+    if (wordChosen.includes(letter)) {
+        var numLetters = wordChosen.split('').filter(function(l) {
+            return l === letter;
+        });
+        // target.className = "right-letter";
+        rightLetters = rightLetters.concat(numLetters); // concatonate one array to aonother (numLetters into rightLetters)
+    } else {
+        wrongLetters.push(letter);
+        // target.className = "wrong-letter";
+    } 
     render();
 }
 
-playAgain.addEventListener('click', function(){ // never updated so not in render()
+playAgain.addEventListener('click', function(){ 
     modal.style.display = "flex";
 });
 
 
-
-// With Jim:
-
-    // cats need to be spaced further apart
+// TO DO:
+    // make sure it meets specifications
+    // cleanup / align properly
+    // add readME
+    // update PICTURES
 
 
 

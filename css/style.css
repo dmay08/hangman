@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    background: rgb(248, 248, 248);
     font-family: helvetica;
     color: white;
     text-align: center;
@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0;
 }
 
 #midBottomWrap {
@@ -73,23 +74,27 @@ button {
   cursor: pointer;
 }
 
+
 #bottomWrap {
   display: block;
   height: 50px;
   padding: 30px 0;
   cursor: pointer;
+  margin: 0;
 }
 
 .right-letter {
-    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+    background-image: linear-gradient(to top, #9be15d 0%, #00e3ae 100%);
 }
 
 .wrong-letter {
-    background: #f85032;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #e73827, #f85032);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e73827, #f85032); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-    }
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+}
+
+#message {
+    font-size: 24px;
+    color: rgb(61 118 180);
+}
 
 
 #my-modal {
@@ -104,13 +109,13 @@ button {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7); 
-    
 }
 
 #modal-content {
     display: flex;
     flex-direction: column;
     width: 50%;
+    min-width: 350px;
 }
 
 .modal-header {
@@ -118,18 +123,15 @@ button {
     background-image: linear-gradient(60deg, #3d3393 0%, #2b76b9 37%, #2cacd1 65%, #35eb93 100%);
     color: white;
     text-align: center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+ 
 }
 
 .modal-body {
-    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+    background: rgb(248, 248, 248);
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
     cursor: pointer;
 }
 
@@ -143,9 +145,9 @@ button {
     text-align: center;
     height: 30px;
     width: 120px;
-    border-radius: 10px;
+    border-radius: 3px;
     padding-top: 12px;
-    margin: 5px;
+    margin: 2px;
 }
 
 #cat2 {
@@ -153,9 +155,9 @@ button {
     text-align: center;
     height: 30px;
     width: 120px;
-    border-radius: 10px;
+    border-radius: 3px;
     padding-top: 12px;
-    margin: 5px;
+    margin: 2px;
 }
 
 #cat3 {
@@ -163,13 +165,18 @@ button {
     text-align: center;
     height: 30px;
     width: 120px;
-    border-radius: 10px;
+    border-radius: 3px;
     padding-top: 12px;
-    margin: 5px;
+    margin: 2px;
 }
 
 #click {
     font-size: 18px;
+    color: rgb(61 118 180);
+}
+
+#clickLetter {
+    color: rgb(61 118 180);
 }
 
 .hvr-float {
