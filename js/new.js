@@ -21,6 +21,7 @@ const playAgain = document.getElementById('bottomWrap');
 /* event listeners = "in response to user interaction, update state, then call render" */
 
 modal.addEventListener('click', function(event) {
+    if (!event.target.id.includes('cat')) return;
     category = event.target.textContent.toLowerCase();
     wordChosen = words[category][Math.floor(Math.random() * words[category].length)];
     modal.style.display = "none";
@@ -88,11 +89,9 @@ function handleLetterClick(evt) {
         var numLetters = wordChosen.split('').filter(function(l) {
             return l === letter;
         });
-        // target.className = "right-letter";
         rightLetters = rightLetters.concat(numLetters); // concatonate one array to aonother (numLetters into rightLetters)
     } else {
         wrongLetters.push(letter);
-        // target.className = "wrong-letter";
     } 
     render();
 }
@@ -107,7 +106,7 @@ playAgain.addEventListener('click', function(){
     // cleanup / align properly
     // add readME
     // update PICTURES
-
+    // change name to "app.js"
 
 
 
