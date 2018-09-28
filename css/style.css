@@ -32,7 +32,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 150px;
+    height: 75px;
 }
 
 .theme {
