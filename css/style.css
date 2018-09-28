@@ -3,7 +3,7 @@
 }
     
 body {
-    background: rgb(248, 248, 248);
+    background: rgb(247, 247, 247);
     font-family: helvetica;
     color: white;
     text-align: center;
@@ -19,9 +19,16 @@ body {
     font-weight: bold;
 }
 
+#click {
+    font-size: 18px;
+    color: rgb(62, 118, 180);
+}
 
+#clickLetter {
+    color: rgb(62, 118, 180);
+}
 
-#midBottomWrap {
+#mid-bottom-wrap {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -45,12 +52,12 @@ body {
 }
 
 li {
-  list-style-type: none;
-  position: relative;
-  margin: 0px 1em;
-  display: inline-block;
-  font-size: 2em;
-  min-width: 1em;
+    list-style-type: none;
+    position: relative;
+    margin: 0px 1em;
+    display: inline-block;
+    font-size: 2em;
+    min-width: 1em;
 }
 
 li.hidden {
@@ -74,25 +81,25 @@ ul {
 }
 
 button {
-  background: white;
-  text-transform: capitalize;
-  box-shadow: rgba(0, 0, 0, 0.4) 0 2px 15px -3px;
-  border-radius: 5px;
-  height: 3em;
-  width: 3em;
-  user-select: none;
-  outline: none;
-  cursor: pointer;
-  margin: 2px;
+    background: white;
+    text-transform: capitalize;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 2px 15px -3px;
+    border-radius: 5px;
+    height: 3em;
+    width: 3em;
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+    margin: 2px;
 }
 
 
-#bottomWrap {
-  display: block;
-  height: 50px;
-  padding: 0;
-  cursor: pointer;
-  margin: 0;
+#bottom-wrap {
+    display: block;
+    height: 50px;
+    padding: 0;
+    cursor: pointer;
+    margin: 0;
 }
 
 .right-letter {
@@ -182,14 +189,6 @@ button {
     margin: 2px;
 }
 
-#click {
-    font-size: 18px;
-    color: rgb(62, 118, 180);
-}
-
-#clickLetter {
-    color: rgb(62, 118, 180);
-}
 
 .hvr-float {
     display: inline-block;
