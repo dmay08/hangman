@@ -1,7 +1,6 @@
 # Danny's Hangman
 
-![Hangman](./images/imagename.png)
-    **drag and name images into my folder on the left
+![Hangman](https://i.imgur.com/TTb8Haw.png)
 
 ## Description
 _________________________________________________________________
